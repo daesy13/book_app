@@ -9,21 +9,21 @@
 </head>
 <body>
   <h1>Best Books!</h1>
-  <form method="POST">
+  <form method="POST" action="/searches">
     <fieldset>
     <legend>Search by Title or Author</legend>
 
     <label>
-      <input type="text" name="first-name" placeholder="Enter a title or author" >
+      <input type="text" name="author" placeholder="Enter a title or author" >
     </label>
 
-    <label>Title
-      <input type="radio" name="contact" value="phone">
+    <!-- <label>Title
+      <input type="radio" name="title" value="title">
     </label>
 
     <label>Author
-      <input type="radio" name="contact" value="email">
-    </label>
+      <input type="radio" name="author" value="author">
+    </label> -->
 
     <button>Search the Google Books API</button>
     </fieldset>
