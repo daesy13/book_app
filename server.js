@@ -15,6 +15,11 @@ app.get('/', (req,res) => {
   res.render('pages/index')
 });
 
+function Book(author){
+  this.title = items.title;
+  this.author = items.author;
+}
+
 app.post('/searches', (req, res) => {
   superagent.get(`https://www.googleapis.com/books/v1/volumes?q=author+inauthor:${req.body.author}`).then(data=> {
 
