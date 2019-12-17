@@ -10,12 +10,21 @@ app.set('view engine', 'ejs');
 
 require('dotenv').config();
 
-app.get('/hello', (req,res) => {
+app.get('/', (req,res) => {
+
   res.render('pages/index')
 }) 
 
-// ************************
-//   something goes here
-// ************************
+app.post('/searches', (req, res) => {
+  superagent.get(`https://www.googleapis.com/books/v1/volumes?q=author+inauthor:${req.body.author}`).then(data=> {
+
+    const books =  data.body.items.map(book => ({name: book.volumeInfo.title}));
+
+    console.log(books);
+
+    res.render('book-results', {books:books});
+  })
+})
+
 
 app.listen(3000, () => {console.log('3000 is connected');});
