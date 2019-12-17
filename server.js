@@ -5,7 +5,8 @@ const express = require('express');
 const app = express();
 const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
-let ejs = require('ejs');
+
+app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 require('dotenv').config();
@@ -13,7 +14,7 @@ require('dotenv').config();
 app.get('/', (req,res) => {
 
   res.render('pages/index')
-}) 
+});
 
 app.post('/searches', (req, res) => {
   superagent.get(`https://www.googleapis.com/books/v1/volumes?q=author+inauthor:${req.body.author}`).then(data=> {
@@ -22,9 +23,10 @@ app.post('/searches', (req, res) => {
 
     console.log(books);
 
-    res.render('book-results', {books:books});
+    res.render('pages/searches/show', {books:books});
   })
 })
 
-
-app.listen(3000, () => {console.log('3000 is connected');});
+app.listen(PORT, ()=> {
+  console.log(`listening on: ${PORT}`);
+});
