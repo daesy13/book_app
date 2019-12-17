@@ -16,6 +16,15 @@ app.get('/', (req,res) => {
   res.render('pages/index')
 });
 
+app.get('/error', (req, res) => {
+  res.render('pages/error')
+})
+
+function Book(author){
+  this.title = items.title;
+  this.author = items.author;
+}
+
 app.post('/searches', (req, res) => {
   console.log('req.body :', req.body);
   if (req.body.searchName === 'author') {
