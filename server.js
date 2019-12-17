@@ -26,17 +26,23 @@ function Book(author){
 }
 
 app.post('/searches', (req, res) => {
-  superagent.get(`https://www.googleapis.com/books/v1/volumes?q=author+inauthor:${req.body.author}`).then(data=> {
-
-    const books =  data.body.items.map(book => ({name: book.volumeInfo.title}));
-
-    console.log(books);
-
-    res.render('pages/searches/show', {books:books});
-  }).catch(err => {
-    console.error(err);
-    res.render('pages/error');
-  })
+  console.log('req.body :', req.body);
+  if (req.body.searchName === 'author') {
+    console.log('##############author!');
+    superagent.get(`https://www.googleapis.com/books/v1/volumes?q=author+inauthor:${req.body.author}`).then(data=> {
+      const books =  data.body.items.map(book => ({name: book.volumeInfo.title}));
+      console.log(books);
+      res.render('pages/searches/show', {books:books});
+    })
+  }
+  if (req.body.searchName === 'title') {
+    console.log('##############title!');
+    superagent.get(`https://www.googleapis.com/books/v1/volumes?q=title+intitle:${req.body.title}`).then(data=> {
+      const books =  data.body.items.map(book => ({name: book.volumeInfo.title}));
+      console.log(books);
+      res.render('pages/searches/show', {books:books});
+    })
+  }
 })
 
 app.listen(PORT, ()=> {
