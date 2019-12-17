@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="../../public/styles/base.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../../public/styles/base.css"> -->
   <title>Document</title>
 </head>
 <body>
   <h1>Best Books!</h1>
-  <form method="POST">
+  <form method="POST" action="/searches">
     <fieldset>
     <legend>Search by Title or Author</legend>
 
     <label>
-      <input type="text" name="first-name" placeholder="Enter a title or author" >
+      <input type="text" name="name" placeholder="Enter a title or author" >
     </label>
 
     <label>Title
-      <input type="radio" name="contact" value="phone">
+      <input type="radio" name="searchName" value="title">
     </label>
 
     <label>Author
-      <input type="radio" name="contact" value="email">
+      <input type="radio" name="searchName" value="author">
     </label>
 
     <button>Search the Google Books API</button>
