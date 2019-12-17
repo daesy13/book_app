@@ -1,6 +1,5 @@
 'use strict';
 
-// Dependencies
 const express = require('express');
 const app = express();
 const superagent = require('superagent');
