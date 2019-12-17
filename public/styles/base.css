@@ -1,4 +1,38 @@
+*{
+  margin: 0 auto;
+  /* max-width: 768px; */
+}
 body {
-  background-color: purple;
+  background-color: darkgray;
   color: white;
+}
+
+h1 {
+  background-color: black;
+  
+}
+
+h2 {
+  background: #686868;
+  text-align: center;
+}
+
+button {
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 16px 32px;
+  margin: 4px 2px;
+  /* display: contents; */
+}
+
+.box1 {
+  /* display: flex;
+  flex-direction: column;
+  text-align: center; */
+  /* height: 100%; */
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; */
 }

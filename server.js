@@ -6,6 +6,7 @@ const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
+app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 require('dotenv').config();
@@ -14,6 +15,10 @@ app.get('/', (req,res) => {
 
   res.render('pages/index')
 });
+
+app.get('/error', (req, res) => {
+  res.render('pages/error')
+})
 
 function Book(author){
   this.title = items.title;
@@ -28,6 +33,9 @@ app.post('/searches', (req, res) => {
     console.log(books);
 
     res.render('pages/searches/show', {books:books});
+  }).catch(err => {
+    console.error(err);
+    res.render('pages/error');
   })
 })
 
