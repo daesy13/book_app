@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 const superagent = require('superagent');
+const pg = require('pg');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
@@ -10,6 +11,11 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 require('dotenv').config();
+
+//setting up database
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', (e) => console.error(e));
+client.connect();
 
 app.get('/', (req,res) => {
 
@@ -31,11 +37,11 @@ function Book(info){
 
 
 function createSearch (req, res) {
-  console.log('req.body :', req.body);
+  // console.log('req.body :', req.body);
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
   if (req.body.searchName === 'title') { url += `+intitle:${req.body.name}`; }
   if (req.body.searchName === 'author') { url += `+inauthor:${req.body.name}`; }
-
+ 
   superagent.get(url).then(data => {
     const books = data.body.items.map(book => ({
       name: book.volumeInfo.title,
@@ -43,8 +49,15 @@ function createSearch (req, res) {
       description: book.volumeInfo.description,
       image: book.volumeInfo.imageLinks.thumbnail
     }));
-    console.log('books :', books);
-    new Book(books);
+
+    // console.log('books :', books);
+    let book = new Book(books);
+
+    let SQL = `INSERT INTO books(title, author, description, image)VALUES($1, $2, $3, $4)`;
+    let values = [book.title, book.author, book.description, book.image];
+    console.log('!!!!!values :', values);
+    client.query(SQL, values);
+    console.log('client.query(SQL, values) :', client.query(SQL, values));
     res.render('pages/searches/show', {books:books});
   })
 }
