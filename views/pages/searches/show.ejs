@@ -7,9 +7,11 @@
 
     <ul>
       <% books.forEach(item => { %>
+        <li><img src="<%= item.image %>" alt="book image" ></li>
         <li><%= item.name %></li>
+        <li><%= item.author %></li>
+        <li><%= item.description %></li>
       <% }) %>
-
     </ul>
   </body>
 </html>

@@ -24,6 +24,9 @@ app.post('/searches', createSearch);
 
 function Book(info){
   this.title = info[0].name;
+  this.author = info[0].author;
+  this.description = info[0].description;
+  this.image = info[0].image;
 }
 
 
@@ -33,10 +36,15 @@ function createSearch (req, res) {
   if (req.body.searchName === 'title') { url += `+intitle:${req.body.name}`; }
   if (req.body.searchName === 'author') { url += `+inauthor:${req.body.name}`; }
 
-  superagent.get(url).then(data=> {
-    const books =  data.body.items.map(book => ({name: book.volumeInfo.title}));
-    console.log(books);
-    new Book(books)
+  superagent.get(url).then(data => {
+    const books = data.body.items.map(book => ({
+      name: book.volumeInfo.title,
+      author: book.volumeInfo.authors,
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.thumbnail
+    }));
+    console.log('books :', books);
+    new Book(books);
     res.render('pages/searches/show', {books:books});
   })
 }
