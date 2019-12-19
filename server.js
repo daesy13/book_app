@@ -5,12 +5,12 @@ const app = express();
 const superagent = require('superagent');
 const pg = require('pg');
 
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
-
-require('dotenv').config();
-const PORT = process.env.PORT || 3000;
 
 //setting up database
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -26,6 +26,13 @@ app.get('/error', (req, res) => {
   res.render('pages/error')
 })
 
+app.get('/books/:id', (req, res) => {
+  const idFromRoute = req.params.id;
+  client.query('SELECT * FROM books WHERE id=$1', [idFromRoute]).then(value => {
+    res.send(value.rows[0]);
+  });
+});
+
 app.post('/searches', createSearch);
 
 function Book(info){
@@ -34,6 +41,13 @@ function Book(info){
   this.description = info[0].description;
   this.image = info[0].image;
 }
+
+app.post('/book-saved', (req, res) => {
+  client.query('INSERT INTO books (title, author, description, image)VALUES($1, $2, $3, $4)', Object.values(req.body));
+  res.send(Object.values(req.body)).then(() => {
+    res.redirect('/');
+  });
+});
 
 
 function createSearch (req, res) {
@@ -53,11 +67,11 @@ function createSearch (req, res) {
     // console.log('books :', books);
     let book = new Book(books);
 
-    let SQL = `INSERT INTO books(title, author, description, image)VALUES($1, $2, $3, $4)`;
-    let values = [book.title, book.author, book.description, book.image];
-    console.log('!!!!!values :', values);
-    client.query(SQL, values);
-    console.log('client.query(SQL, values) :', client.query(SQL, values));
+    // let SQL = `INSERT INTO books(title, author, description, image)VALUES($1, $2, $3, $4)`;
+    // let values = [book.title, book.author, book.description, book.image];
+    // console.log('!!!!!values :', values);
+    // client.query(SQL, values);
+    // console.log('client.query(SQL, values) :', client.query(SQL, values));
     res.render('pages/searches/show', {books:books});
   })
 }

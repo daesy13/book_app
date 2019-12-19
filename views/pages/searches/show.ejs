@@ -4,14 +4,28 @@
   <body>
     <h1>Book list</h1>
     <p><a href="/">Home</a></p>
-
-    <ul>
-      <% books.forEach(item => { %>
-        <li><img src="<%= item.image %>" alt="book image" ></li>
-        <li><%= item.name %></li>
-        <li><%= item.author %></li>
-        <li><%= item.description %></li>
+    
+    <% books.forEach(item => { %>
+      <!-- ***CAN'T DISPLAY THE RIGHT URL NEED TO SHOW BOOK ID!!!!! -->
+      <a href="/books/<%= item.id %>"> 
+        <ul>
+        <% if (item.image) {%>
+          <img src="<%= item.image %>"/>
+          <%}%>
+          <li><%= item.name %></li>
+          <li><%= item.author %></li>
+          <li><%= item.description %></li>
+        </ul>
+      </a>
+      <form action="/book-saved" method="POST">
+        <input type="hidden" name="name" value="<%= item.name %>">
+        <input type="hidden" name="author" value="<%= item.author %>">
+        <input type="hidden" name="description" value="<%= item.description %>">
+        <input type="hidden" name="image_url" value="<%= item.image_url %>">
+        <!-- <input type="hidden" name="isbn" value="<%= item.isbn %>">
+        <input type="hidden" name="category" value="<%= item.category %>"> -->
+        <input type="submit">
+      </form>
       <% }) %>
-    </ul>
   </body>
 </html>

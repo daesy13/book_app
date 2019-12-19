@@ -8,26 +8,37 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Best Books!</h1>
+  <!-- id=logo is for the book icon -->
+  <a href="/" >
+    <h1>Best Books!</h1>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/detail">Detail</a></li>
+    </ul>
+  </nav>
+  
   <h2>Search by Title or Author</h2>
   <form method="POST" action="/searches">
-    <fieldset>
-    <legend>Search by Title or Author</legend>
-
-    <label>
+    <label class="enter-title">
       <input type="text" name="name" placeholder="Enter a title or author" >
     </label>
 
-    <label>Title
-      <input type="radio" name="searchName" value="title">
-    </label>
+    <fieldset>
+      <label>Title
+        <input type="radio" name="searchName" value="title">
+      </label>
+    </fieldset>
 
-    <label>Author
-      <input type="radio" name="searchName" value="author">
-    </label>
+    <fieldset>
+      <label>Author
+        <input type="radio" name="searchName" value="author">
+      </label>
+    </fieldset>
 
     <button type="submit">Search the Google Books API</button>
-    </fieldset>
   </form>
 </body>
 </html>
