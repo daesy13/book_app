@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head></head>
-  <body>
-    <h1>Book list</h1>
-    <p><a href="/">Home</a></p>
-
-    <ul>
-      <% books.forEach(item => { %>
-        <li><img src="<%= item.image %>" alt="book image" ></li>
-        <li><%= item.name %></li>
-        <li><%= item.author %></li>
-        <li><%= item.description %></li>
-      <% }) %>
-    </ul>
-  </body>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles/base.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Book list</h1>
+  <p><a href="/">Home</a></p>
+  <ul>
+    <% books.forEach(book => { %>
+      <li><img src="<%= book.image_url %>" alt="book image" ></li>
+      <li>Title : <%= book.title %></li>
+      <li>Author : <%= book.author %></li>
+      <li>ISBN : <%= book.isbn %></li>
+      <li>Description : <%= book.description %></li>
+      <button>Select this Book</button>
+      <form action="/" method="POST">
+        <input name="title" value="<%= book.title %>">
+        <input name="author" value="<%= book.author %>">
+        <input name="isbn" value="<%= book.isbn %>">
+        <input name="image_url" value="<%= book.image_url %>">
+        <input name="description" value="<%= book.description %>">
+        <input type="submit" value="Add to Database">
+      </form>
+    <% }) %>
+  </ul>
+</body>
 </html>
