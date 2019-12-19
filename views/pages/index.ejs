@@ -8,26 +8,16 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Best Books!</h1>
-  <h2>Search by Title or Author</h2>
-  <form method="POST" action="/searches">
-    <fieldset>
-    <legend>Search by Title or Author</legend>
-
-    <label>
-      <input type="text" name="name" placeholder="Enter a title or author" >
-    </label>
-
-    <label>Title
-      <input type="radio" name="searchName" value="title">
-    </label>
-
-    <label>Author
-      <input type="radio" name="searchName" value="author">
-    </label>
-
-    <button type="submit">Search the Google Books API</button>
-    </fieldset>
-  </form>
+  <h1>Home</h1>
+  <h2>Search the Google Books API</h2>
+  <button><a href="/searches">Search</a></button>
+  <ul>
+    <% results.forEach(book => { %>
+      <li><img src="<%= book.image_url %>" alt="book image" ></li>
+      <li>Title : <%= book.title %></li>
+      <li>Author : <%= book.author %></li>
+      <button><a href="/books/<%= book.id%>">View Details</a></button>
+    <% }) %>
+  </ul>
 </body>
 </html>
