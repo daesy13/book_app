@@ -4,13 +4,13 @@ const express = require('express');
 const app = express();
 const superagent = require('superagent');
 const pg = require('pg');
-const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 
 //setting up database
 const client = new pg.Client(process.env.DATABASE_URL);
