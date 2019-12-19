@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/base.css">
+  <title>Form Page</title>
+</head>
+<body>
+  <p><a href="/">Home</a></p>
+  <h1>Add a Book</h1>
+  <form action="/" method="POST">
+    <input type="hidden" name="_method" value="post" />
+    <input name="title" value="<%= book.title %>" />
+    <input name="author" value="<%= book.author %>" />
+    <input name="isbn" value="<%= book.isbn %>" />
+    <input name="image_url" value="<%= book.image_url %>" />
+    <input name="description" value="<%= book.description %>" />
+    <input type="submit" value="ADD">
+  </form>
+</body>
+</html>
