@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/base.css">
+  <title>Document</title>
+</head>
+<body>
+  <p><a href="/">Home</a></p>
+  <ul>
+    <li><img src="<%= book.image_url %>" alt="book image" ></li>
+    <li><%= book.title %></li>
+    <li><%= book.author %></li>
+    <li><%= book.description %></li>
+    <li>ISBN: <%= book.isbn %></li>
+    <li>Bookshelf: </li>
+  </ul>
+  <button><a href="/books/<%= book.id%>">Edit Details</a></button>
+  <form action="/update/<%= book.id %>" method="POST">
+    <input type="hidden" name="_method" value="put" />
+    <input name="title" value="<%= book.title %>">
+    <input name="author" value="<%= book.author %>">
+    <input name="isbn" value="<%= book.isbn %>">
+    <input name="image_url" value="<%= book.image_url %>">
+    <input name="description" value="<%= book.description %>">
+    <input type="submit" value="UPDATE">
+  </form>
+</body>
+</html>
