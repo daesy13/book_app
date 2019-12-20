@@ -14,14 +14,13 @@
       <li>Author : <%= book.author %></li>
       <li>ISBN : <%= book.isbn %></li>
       <li>Description : <%= book.description %></li>
-      <button>Select this Book</button>
-      <form action="/" method="POST">
-        <input name="title" value="<%= book.title %>">
-        <input name="author" value="<%= book.author %>">
-        <input name="isbn" value="<%= book.isbn %>">
-        <input name="image_url" value="<%= book.image_url %>">
-        <input name="description" value="<%= book.description %>">
-        <input type="submit" value="Add to Database">
+      <form action="/add_book_form" method="POST">
+        <input type="hidden" name="title" value="<%= book.title %>" />
+        <input type="hidden" name="author" value="<%= book.author %>" />
+        <input type="hidden" name="isbn" value="<%= book.isbn %>" />
+        <input type="hidden" name="image_url" value="<%= book.image_url %>" />
+        <input type="hidden" name="description" value="<%= book.description %>" />
+        <input type="submit" value="Select this Book">
       </form>
     <% }) %>
   </ul>
