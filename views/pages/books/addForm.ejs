@@ -4,20 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="styles/base.css">
-  <title>Form Page</title>
+  <link rel="stylesheet" href="../../styles/base.css">
+  <link rel="stylesheet" href="../../styles/layout.css">
+  <link rel="stylesheet" href="../../styles/modules.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Book App | Add Book</title>
 </head>
 <body>
-  <p><a href="/">Home</a></p>
-  <h1>Add a Book</h1>
-  <form action="/" method="POST">
-    <input type="hidden" name="_method" value="post" />
-    <input name="title" value="<%= book.title %>" />
-    <input name="author" value="<%= book.author %>" />
-    <input name="isbn" value="<%= book.isbn %>" />
-    <input name="image_url" value="<%= book.image_url %>" />
-    <input name="description" value="<%= book.description %>" />
-    <input type="submit" value="ADD">
-  </form>
+  <header>
+    <div id="nav-bar">
+      <h1><a href="/">Best Books!</a></h1>
+      <div id="bookAppLinks">
+        <a href="/">Home</a>
+        <a href="/searches">Search the Google Books API</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="showLinks()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </header>
+  <div class="page-title">
+    <h2>Add a Book</h2>
+  </div>
+  <div class="form-container">
+    <form action="/" method="POST">
+      <input type="hidden" name="_method" value="post" />
+      <label>Title</label>
+      <input name="title" value="<%= book.title %>" />
+      <label>Author</label>
+      <input name="author" value="<%= book.author %>" />
+      <label>ISBN</label>
+      <input name="isbn" value="<%= book.isbn %>" />
+      <label>Image URL</label>
+      <input name="image_url" value="<%= book.image_url %>" />
+      <label>Description</label>
+      <input name="description" value="<%= book.description %>" />
+      <button type="submit">Add</button>
+    </form>
+  </div>
 </body>
 </html>

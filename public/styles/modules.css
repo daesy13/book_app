@@ -1,0 +1,115 @@
+/* Home Page */
+
+#total-books-bar {
+  background: #686868;
+  text-align: center;
+  padding: 1em 0em;
+  font-size: 1.2em;
+}
+
+.book-information {
+  width: 75%;
+  background-color: lightgray;
+  text-align: center;
+  border-style: solid;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+
+.book-information h2 {
+  text-shadow: 2px 2px 4px #000000;
+  margin: 20px 0px;
+}
+
+.book-information p {
+  color: rgb(46, 46, 46);
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.book-information #description {
+  background-color: white;
+  border-radius: 4px;
+  padding: 14px;
+  color: rgb(46, 46, 46);
+  margin-bottom: 20px;
+}
+
+
+button {
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+ button a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5em;
+}
+
+
+/* Search Page */
+
+.page-title {
+  background: #686868;
+  text-align: center;
+  padding: 1em 0em;
+  margin-bottom: 30px;
+}
+
+.form-container {
+  width: 75%;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-size: 1.2em;
+}
+
+.radio-container {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  background-color: lightgray;
+  font-size: 1.2em;
+}
+
+.form-container button {
+  font-size: 1em;
+  width: 100%;
+}
+
+
+/* Update Page */
+
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}

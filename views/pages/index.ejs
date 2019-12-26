@@ -5,19 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/base.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Book App | Home</title>
 </head>
 <body>
-  <h1>Home</h1>
-  <h2>Search the Google Books API</h2>
-  <button><a href="/searches">Search</a></button>
+  <header>
+    <div id="nav-bar">
+      <h1><a href="/">Best Books!</a></h1>
+      <div id="bookAppLinks">
+        <a href="/">Home</a>
+        <a href="/searches">Search the Google Books API</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="showLinks()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </header>
+  <div id="total-books-bar">
+    <% let size = Object.keys(results).length %>
+    <p><%= size %> Saved Books</p>
+  </div>
   <ul>
     <% results.forEach(book => { %>
-      <li><img src="<%= book.image_url %>" alt="book image" ></li>
-      <li>Title : <%= book.title %></li>
-      <li>Author : <%= book.author %></li>
-      <button><a href="/books/<%= book.id%>">View Details</a></button>
+      <div class="book-information">
+        <li><img src="<%= book.image_url %>" alt="book image" ></li>
+        <li><h2><%= book.title %></h2></li>
+        <li><p><%= book.author %></p></li>
+        <button><a href="/books/<%= book.id%>">View Details</a></button>
+      </div>
     <% }) %>
   </ul>
+  <script>
+    function showLinks() {
+      var x = document.getElementById("bookAppLinks");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
 </body>
 </html>
